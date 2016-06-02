@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1EFF37191D004D2900D89C6E /* UIDevice+ReachAbility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EFF37181D004D2900D89C6E /* UIDevice+ReachAbility.m */; };
 		4B171F721D00347B0055C585 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B171F711D00347B0055C585 /* Assets.xcassets */; };
 		4B171F751D00347B0055C585 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B171F731D00347B0055C585 /* LaunchScreen.storyboard */; };
 		4B171F7D1D003C8E0055C585 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B171F7C1D003C8E0055C585 /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1EFF37161D004C9F00D89C6E /* Utility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		1EFF37171D004D2900D89C6E /* UIDevice+ReachAbility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice+ReachAbility.h"; path = "01-ReachAbility/UIDevice+ReachAbility.h"; sourceTree = "<group>"; };
+		1EFF37181D004D2900D89C6E /* UIDevice+ReachAbility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+ReachAbility.m"; path = "01-ReachAbility/UIDevice+ReachAbility.m"; sourceTree = "<group>"; };
 		4B171F621D00347A0055C585 /* Networking-C13.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Networking-C13.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B171F711D00347B0055C585 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B171F741D00347B0055C585 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -31,6 +35,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1EFF371A1D004D2F00D89C6E /* 01-ReachAbility */ = {
+			isa = PBXGroup;
+			children = (
+				1EFF37171D004D2900D89C6E /* UIDevice+ReachAbility.h */,
+				1EFF37181D004D2900D89C6E /* UIDevice+ReachAbility.m */,
+			);
+			name = "01-ReachAbility";
+			sourceTree = "<group>";
+		};
 		4B171F591D00347A0055C585 = {
 			isa = PBXGroup;
 			children = (
@@ -51,6 +64,8 @@
 			isa = PBXGroup;
 			children = (
 				4B171F7C1D003C8E0055C585 /* main.m */,
+				1EFF37161D004C9F00D89C6E /* Utility.h */,
+				1EFF371A1D004D2F00D89C6E /* 01-ReachAbility */,
 				4B171F711D00347B0055C585 /* Assets.xcassets */,
 				4B171F731D00347B0055C585 /* LaunchScreen.storyboard */,
 				4B171F761D00347B0055C585 /* Info.plist */,
@@ -127,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EFF37191D004D2900D89C6E /* UIDevice+ReachAbility.m in Sources */,
 				4B171F7D1D003C8E0055C585 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

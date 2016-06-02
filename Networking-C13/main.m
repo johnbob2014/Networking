@@ -9,12 +9,12 @@
 @import UIKit;
 @import QuartzCore;
 #import "Utility.h"
-#import "UIDevice-Reachability.h"
+#import "UIDevice+Reachability.h"
 
 
 #pragma mark - TestBedViewController
 
-@interface TestBedViewController : UIViewController <ReachabilityWatcher>
+@interface TestBedViewController : UIViewController <ReachAbilityWatcher>
 @end
 
 @implementation TestBedViewController
@@ -157,7 +157,7 @@
     _window.rootViewController = nav;
     [_window makeKeyAndVisible];
     
-    [[UIDevice currentDevice] scheduleReachabilityWatcher:tbvc];
+    [[UIDevice currentDevice] scheduleReachAbilityWatcher:tbvc];
     
     return YES;
 }
