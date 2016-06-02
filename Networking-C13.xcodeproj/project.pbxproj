@@ -7,25 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4B171F671D00347B0055C585 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B171F661D00347B0055C585 /* main.m */; };
-		4B171F6A1D00347B0055C585 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B171F691D00347B0055C585 /* AppDelegate.m */; };
-		4B171F6D1D00347B0055C585 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B171F6C1D00347B0055C585 /* ViewController.m */; };
-		4B171F701D00347B0055C585 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B171F6E1D00347B0055C585 /* Main.storyboard */; };
 		4B171F721D00347B0055C585 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B171F711D00347B0055C585 /* Assets.xcassets */; };
 		4B171F751D00347B0055C585 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B171F731D00347B0055C585 /* LaunchScreen.storyboard */; };
+		4B171F7D1D003C8E0055C585 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B171F7C1D003C8E0055C585 /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4B171F621D00347A0055C585 /* Networking-C13.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Networking-C13.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4B171F661D00347B0055C585 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4B171F681D00347B0055C585 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		4B171F691D00347B0055C585 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4B171F6B1D00347B0055C585 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		4B171F6C1D00347B0055C585 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		4B171F6F1D00347B0055C585 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4B171F711D00347B0055C585 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B171F741D00347B0055C585 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B171F761D00347B0055C585 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B171F7C1D003C8E0055C585 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,25 +50,12 @@
 		4B171F641D00347B0055C585 /* Networking-C13 */ = {
 			isa = PBXGroup;
 			children = (
-				4B171F681D00347B0055C585 /* AppDelegate.h */,
-				4B171F691D00347B0055C585 /* AppDelegate.m */,
-				4B171F6B1D00347B0055C585 /* ViewController.h */,
-				4B171F6C1D00347B0055C585 /* ViewController.m */,
-				4B171F6E1D00347B0055C585 /* Main.storyboard */,
+				4B171F7C1D003C8E0055C585 /* main.m */,
 				4B171F711D00347B0055C585 /* Assets.xcassets */,
 				4B171F731D00347B0055C585 /* LaunchScreen.storyboard */,
 				4B171F761D00347B0055C585 /* Info.plist */,
-				4B171F651D00347B0055C585 /* Supporting Files */,
 			);
 			path = "Networking-C13";
-			sourceTree = "<group>";
-		};
-		4B171F651D00347B0055C585 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				4B171F661D00347B0055C585 /* main.m */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +117,6 @@
 			files = (
 				4B171F751D00347B0055C585 /* LaunchScreen.storyboard in Resources */,
 				4B171F721D00347B0055C585 /* Assets.xcassets in Resources */,
-				4B171F701D00347B0055C585 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,23 +127,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B171F6D1D00347B0055C585 /* ViewController.m in Sources */,
-				4B171F6A1D00347B0055C585 /* AppDelegate.m in Sources */,
-				4B171F671D00347B0055C585 /* main.m in Sources */,
+				4B171F7D1D003C8E0055C585 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4B171F6E1D00347B0055C585 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4B171F6F1D00347B0055C585 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4B171F731D00347B0055C585 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -302,6 +270,7 @@
 				4B171F7B1D00347B0055C585 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
