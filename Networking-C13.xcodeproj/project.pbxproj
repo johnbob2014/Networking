@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1EE6AB291D03178300672510 /* TestBedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE6AB281D03178300672510 /* TestBedViewController.m */; };
 		1EFF37191D004D2900D89C6E /* UIDevice+ReachAbility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EFF37181D004D2900D89C6E /* UIDevice+ReachAbility.m */; };
 		4B171F721D00347B0055C585 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B171F711D00347B0055C585 /* Assets.xcassets */; };
 		4B171F751D00347B0055C585 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B171F731D00347B0055C585 /* LaunchScreen.storyboard */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1EE6AB281D03178300672510 /* TestBedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestBedViewController.m; sourceTree = "<group>"; };
 		1EFF37161D004C9F00D89C6E /* Utility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		1EFF37171D004D2900D89C6E /* UIDevice+ReachAbility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice+ReachAbility.h"; path = "01-ReachAbility/UIDevice+ReachAbility.h"; sourceTree = "<group>"; };
 		1EFF37181D004D2900D89C6E /* UIDevice+ReachAbility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+ReachAbility.m"; path = "01-ReachAbility/UIDevice+ReachAbility.m"; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				4B171F7C1D003C8E0055C585 /* main.m */,
+				1EE6AB281D03178300672510 /* TestBedViewController.m */,
 				1EFF37161D004C9F00D89C6E /* Utility.h */,
 				1EFF371A1D004D2F00D89C6E /* 01-ReachAbility */,
 				4B171F711D00347B0055C585 /* Assets.xcassets */,
@@ -144,6 +147,7 @@
 			files = (
 				1EFF37191D004D2900D89C6E /* UIDevice+ReachAbility.m in Sources */,
 				4B171F7D1D003C8E0055C585 /* main.m in Sources */,
+				1EE6AB291D03178300672510 /* TestBedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +254,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Networking-C13/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.BobZhang.Networking-C13";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -261,6 +266,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Networking-C13/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.BobZhang.Networking-C13";
 				PRODUCT_NAME = "$(TARGET_NAME)";

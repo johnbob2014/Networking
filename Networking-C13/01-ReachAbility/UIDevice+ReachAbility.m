@@ -98,6 +98,14 @@ SCNetworkReachabilityRef reachAbility;
     return [NSString stringWithCString:inet_ntoa(*list[0]) encoding:NSUTF8StringEncoding];
 }
 
+- (NSString *)localIPAddress
+{
+    struct hostent *host = gethostbyname([[self hostname] UTF8String]);
+    if (!host) {herror("resolv"); return nil;}
+    struct in_addr **list = (struct in_addr **)host->h_addr_list;
+    return [NSString stringWithCString:inet_ntoa(*list[0]) encoding:NSUTF8StringEncoding];
+}
+
 // Matt Brown's get WiFi IP addy solution
 // Author gave permission to use in Cookbook under cookbook license
 // http://mattbsoftware.blogspot.com/2009/04/how-to-get-ip-address-of-iphone-os-v221.html
@@ -201,18 +209,113 @@ SCNetworkReachabilityRef reachAbility;
     return isReachable ? YES : NO;
 }
 
+#pragma mark Checking Connections
 
+- (void)pingReachAbility{
+    if (!reachAbility) {
+        BOOL ignoresAdHocWiFi = NO;
+        struct sockaddr_in ipAddress;
+        bzero(&ipAddress, sizeof(ipAddress));
+        ipAddress.sin_len = sizeof(ipAddress);
+        ipAddress.sin_family = AF_INET;
+        ipAddress.sin_addr.s_addr = htonl(ignoresAdHocWiFi ? INADDR_ANY : IN_LINKLOCALNETNUM);
+        
+        /* Can also create zero addy
+         struct sockaddr_in zeroAddress;
+         bzero(&zeroAddress, sizeof(zeroAddress));
+         zeroAddress.sin_len = sizeof(zeroAddress);
+         zeroAddress.sin_family = AF_INET; */
 
+        reachAbility = SCNetworkReachabilityCreateWithAddress(kCFAllocatorDefault, (struct sockaddr *)&ipAddress);
+        CFRetain(reachAbility);
+    }
+    
+    // Recover reachAbility flags
+    BOOL didRetrieveFlags = SCNetworkReachabilityGetFlags(reachAbility, &connectionFlags);
+    if (!didRetrieveFlags) printf("Error. Could not recover network reachability flags\n");
+}
 
+- (BOOL)networkAvailable{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [self pingReachAbility];
+    BOOL isReachable = (connectionFlags & kSCNetworkFlagsReachable) != 0;
+    BOOL needsConnection = (connectionFlags & kSCNetworkFlagsConnectionRequired) != 0;
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    return (isReachable && !needsConnection) ? YES : NO;
+}
 
+- (BOOL)activePersonalHotspot
+{
+    // Personal hotspot is fixed to 172.20.10
+    NSString* localWifiAddress = [self localWiFiIPAddress];
+    return (localWifiAddress != nil && [localWifiAddress hasPrefix:@"172.20.10"]);
+}
 
+- (BOOL)activeWWAN{
+    if (![self networkAvailable]) return NO;
+    return ((connectionFlags & kSCNetworkReachabilityFlagsIsWWAN) != 0);
+}
 
+- (BOOL)activeWLAN{
+    return ([[UIDevice currentDevice] localWiFiIPAddress] != nil);
+}
 
+#pragma mark Monitoring ReachAbility
+static void ReachAbilityCallback(SCNetworkReachabilityRef target, SCNetworkConnectionFlags flags, void* info){
+    @autoreleasepool {
+        id watcher = (__bridge id) info;
+        if ([watcher respondsToSelector:@selector(reachAbilityChanged)]) {
+            [watcher performSelector:@selector(reachAbilityChanged)];
+        }
+    }
+}
 
+- (BOOL)scheduleReachAbilityWatcher:(id <ReachAbilityWatcher>)watcher{
+    [self pingReachAbility];
+    
+    SCNetworkReachabilityContext context = {0,(__bridge void *)watcher,NULL,NULL,NULL};
+    if (!SCNetworkReachabilitySetCallback(reachAbility, ReachAbilityCallback, &context)) {
+        if (!SCNetworkReachabilityScheduleWithRunLoop(reachAbility, CFRunLoopGetCurrent(), kCFRunLoopCommonModes)) {
+            NSLog(@"Error : Could not shedule reachability");
+            SCNetworkReachabilitySetCallback(reachAbility, NULL, NULL);
+            return NO;
+        }
+    }
+    
+    return YES;
+}
 
+- (void)unscheduleReachAbilityWatcher{
+    SCNetworkReachabilitySetCallback(reachAbility, NULL, NULL);
+    if (SCNetworkReachabilityUnscheduleFromRunLoop(reachAbility, CFRunLoopGetCurrent(), kCFRunLoopCommonModes)) {
+        NSLog(@"Unscheduled reachAbility");
+    }else{
+        NSLog(@"Error : Could not unschedule reachAbility");
+    }
+    
+    CFRelease(reachAbility);
+    reachAbility = nil;
+}
 
+#pragma mark - WiFi Check
 
+- (BOOL)performWiFiCheck{
+    if (![self networkAvailable] || ![self activeWWAN]) {
+        [self performSelector:@selector(privateShowAlert:) withObject:@"This application requires WiFi. Please enable WiFi in Settings and launch this application again." afterDelay:0.5f];
+        return NO;
+    }
+    return YES;
+}
 
+- (void)privateShowAlert:(id)formatstring,...{
+    va_list arglist;
+    if (!formatstring) return;
+    va_start(arglist, formatstring);
+    NSString *outString = [[NSString alloc] initWithFormat:formatstring arguments:arglist];
+    va_end(arglist);
+    
+    [[[UIAlertView alloc] initWithTitle:outString message:nil delegate:nil cancelButtonTitle:@"OK"otherButtonTitles:nil] show];
+}
 
 
 @end

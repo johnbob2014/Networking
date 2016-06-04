@@ -30,13 +30,27 @@
 
 // Availability tests
 - (BOOL)hostAvailable:(NSString *)theHost;
+
+/**
+    网络是否可用
+ */
 - (BOOL)networkAvailable;
+
+/**
+    WLAN是否可用
+ */
 - (BOOL)activeWLAN;
+
+/**
+    WWAN是否可用
+ */
 - (BOOL)activeWWAN;
+
+
 - (BOOL)activePersonalHotspot;
 - (BOOL)performWiFiCheck;
 
 - (BOOL)scheduleReachAbilityWatcher:(id <ReachAbilityWatcher>)watcher;
-- (void)unscheduleReachabilityWatcher;
+- (void)unscheduleReachAbilityWatcher;
 
 @end
