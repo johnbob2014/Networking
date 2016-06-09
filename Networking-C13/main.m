@@ -7,9 +7,10 @@
  */
 
 @import UIKit;
-@import QuartzCore;
 
-#import "TestBedViewController.m"
+#import "Utility.h"
+#import "UIDevice+ReachAbility.h"
+#import "TestBedViewController.h"
 
 #pragma mark - Application Setup
 
@@ -23,7 +24,7 @@
 {
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     _window.tintColor = COOKBOOK_PURPLE_COLOR;
-    TBVC_01 *tbvc = [[TBVC_01 alloc] init];
+    TBVC_01_ReachAbility *tbvc = [[TBVC_01_ReachAbility alloc] init];
     tbvc.edgesForExtendedLayout = UIRectEdgeNone;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:tbvc];
     _window.rootViewController = nav;

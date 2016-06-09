@@ -6,16 +6,17 @@
 //  Copyright © 2016年 BobZhang. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "TestBedViewController.h"
 #import "Utility.h"
 
-#pragma mark - TBVC_01
+#pragma mark - TBVC_01_ReachAbility
 
 #import "UIDevice+Reachability.h"
-@interface TBVC_01 : UIViewController <ReachAbilityWatcher>
+
+@interface TBVC_01_ReachAbility ()<ReachAbilityWatcher>
 @end
 
-@implementation TBVC_01
+@implementation TBVC_01_ReachAbility
 {
     UITextView *textView;
 }
@@ -136,6 +137,33 @@
 
 @end
 
-#pragma mark - TBVC_02
+#pragma mark - TBVC_04_BackgroundTransfers
+
+@import MediaPlayer;
+// Large Movie (35 MB)
+#define LARGE_MOVIE @"http://www.archive.org/download/BettyBoopCartoons/Betty_Boop_More_Pep_1936_512kb.mp4"
+
+// Short movie (3 MB)
+#define SMALL_MOVIE @"http://www.archive.org/download/Drive-inSaveFreeTv/Drive-in--SaveFreeTv_512kb.mp4"
+
+// Fake address
+#define FAKE_MOVIE @"http://www.idontbelievethisisavalidurlforthisexample.com"
+
+// Current URL to test
+#define MOVIE_URL   [NSURL URLWithString:LARGE_MOVIE]
+
+// Location to copy the downloaded item
+#define FILE_LOCATION	[NSHomeDirectory() stringByAppendingString:@"/Documents/Movie.mp4"]
+
+
+@interface TBVC_04_BackgroundTransfers ()<NSURLSessionDownloadDelegate>
+@property (nonatomic,strong) UILabel *statusLabel;
+@end
+
+@implementation TBVC_04_BackgroundTransfers 
+
+
+
+@end
 
 

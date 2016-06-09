@@ -15,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1EB2586B1D09AEA000E456C7 /* TestBedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestBedViewController.h; sourceTree = "<group>"; };
 		1EE6AB281D03178300672510 /* TestBedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestBedViewController.m; sourceTree = "<group>"; };
 		1EFF37161D004C9F00D89C6E /* Utility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		1EFF37171D004D2900D89C6E /* UIDevice+ReachAbility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice+ReachAbility.h"; path = "01-ReachAbility/UIDevice+ReachAbility.h"; sourceTree = "<group>"; };
@@ -66,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				4B171F7C1D003C8E0055C585 /* main.m */,
+				1EB2586B1D09AEA000E456C7 /* TestBedViewController.h */,
 				1EE6AB281D03178300672510 /* TestBedViewController.m */,
 				1EFF37161D004C9F00D89C6E /* Utility.h */,
 				1EFF371A1D004D2F00D89C6E /* 01-ReachAbility */,
