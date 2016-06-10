@@ -8,6 +8,7 @@
 
 #import "TestBedViewController.h"
 #import "Utility.h"
+#import "UIView+AutoLayout.h"
 
 #pragma mark - TBVC_01_ReachAbility
 
@@ -157,13 +158,135 @@
 
 
 @interface TBVC_04_BackgroundTransfers ()<NSURLSessionDownloadDelegate>
-@property (nonatomic,strong) UILabel *statusLabel;
 @end
 
-@implementation TBVC_04_BackgroundTransfers 
+@implementation TBVC_04_BackgroundTransfers {
+    BOOL success;
+    MPMoviePlayerViewController *player;
+    UIProgressView *progressView;
+    NSURLSession *session;
+}
 
+- (void)viewDidLoad{
+    [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor magentaColor];
+    self.navigationItem.rightBarButtonItem = BARBUTTON(@"Download Movie", @selector(startDownload));
+    self.navigationItem.leftBarButtonItem = BARBUTTON(@"Exit App", @selector(exitApp));
+    
+    // Create a session configuration passing in the session ID
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"CoreiOSBackgroundID"];
+    // ?
+    configuration.discretionary = YES;
+    
+    session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
+    
+    progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
+    [self.view addSubview:progressView];
+    progressView.translatesAutoresizingMaskIntoConstraints = NO;
+    [progressView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(200, 10, 10, 10) excludingEdge:ALEdgeBottom];
+    
+    self.statusLabel = [UILabel newAutoLayoutView];
+    self.statusLabel.text = @"Not Started";
+    self.statusLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:self.statusLabel];
+    [self.statusLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:progressView withOffset:10 relation:NSLayoutRelationGreaterThanOrEqual];
+    [self.statusLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:10];
+    
+}
 
+- (void)startDownload{
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    [player.moviePlayer stop];
+    player = nil;
+    
+    // Remove any existing data
+    if ([[NSFileManager defaultManager] fileExistsAtPath:FILE_LOCATION])
+    {
+        NSError *error;
+        if (![[NSFileManager defaultManager] removeItemAtPath:FILE_LOCATION error:&error])
+            NSLog(@"Error removing existing data: %@", error.localizedFailureReason);
+    }
+    
+    // Fetch the data
+    [self downloadMovie:MOVIE_URL];
 
+}
+
+- (void)downloadMovie:(NSURL *)url{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    self.statusLabel.text = @"Download Started";
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURLSessionDownloadTask *task = [session downloadTaskWithRequest:request];
+    [task resume];
+}
+
+- (void)exitApp
+{
+    abort();
+}
+
+- (void)play{
+    player = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:FILE_LOCATION]];
+    [player.moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
+    player.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
+    player.moviePlayer.allowsAirPlay = YES;
+    [player.moviePlayer prepareToPlay];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:MPMoviePlayerPlaybackDidFinishNotification object:player.moviePlayer queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    }];
+    
+    player.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    
+    [self presentMoviePlayerViewControllerAnimated:player];
+}
+
+#pragma mark - NSURLSessionDownloadDelegate
+
+- (void)URLSession:(NSURLSession *)session
+      downloadTask:(NSURLSessionDownloadTask *)downloadTask
+didFinishDownloadingToURL:(NSURL *)location{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    NSError *error;
+    [[NSFileManager defaultManager] copyItemAtURL:location toURL:[NSURL fileURLWithPath:FILE_LOCATION] error:&error];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        player = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:FILE_LOCATION]];
+        self.navigationItem.rightBarButtonItem = BARBUTTON(@"Play", @selector(play));
+        self.statusLabel.text = @"Download Completed";
+    });
+}
+
+- (void)URLSession:(NSURLSession *)session
+      downloadTask:(NSURLSessionDownloadTask *)downloadTask
+      didWriteData:(int64_t)bytesWritten
+ totalBytesWritten:(int64_t)totalBytesWritten
+totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite{
+    double progress = (double)totalBytesWritten / (double)totalBytesExpectedToWrite;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [progressView setProgress:progress animated:YES];
+        self.statusLabel.text = @"Download Progressing...";
+    });
+}
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (error)
+        {
+            NSLog(@"Task %@ failed: %@", task, error);
+            self.statusLabel.text = @"Download Failed";
+        }
+        else
+        {
+            NSLog(@"Task %@ completed", task);
+            [progressView setProgress:1 animated:NO];
+            self.statusLabel.text = @"Download Completed";
+        }
+    });
+
+}
 @end
 
 

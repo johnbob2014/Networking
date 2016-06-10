@@ -15,6 +15,7 @@
 @end
 
 @interface TBVC_04_BackgroundTransfers : UIViewController
+@property (nonatomic,strong) UILabel *statusLabel;
 @end
 
 

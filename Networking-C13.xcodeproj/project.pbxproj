@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E3AC5AB1D0AB9A80067BD23 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3AC5AA1D0AB9A80067BD23 /* UIView+AutoLayout.m */; };
 		1EE6AB291D03178300672510 /* TestBedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE6AB281D03178300672510 /* TestBedViewController.m */; };
 		1EFF37191D004D2900D89C6E /* UIDevice+ReachAbility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EFF37181D004D2900D89C6E /* UIDevice+ReachAbility.m */; };
 		4B171F721D00347B0055C585 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B171F711D00347B0055C585 /* Assets.xcassets */; };
@@ -15,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E3AC5A91D0AB9A80067BD23 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
+		1E3AC5AA1D0AB9A80067BD23 /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
 		1EB2586B1D09AEA000E456C7 /* TestBedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestBedViewController.h; sourceTree = "<group>"; };
 		1EE6AB281D03178300672510 /* TestBedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestBedViewController.m; sourceTree = "<group>"; };
 		1EFF37161D004C9F00D89C6E /* Utility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
@@ -38,6 +41,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E3AC5A81D0AB9A80067BD23 /* UIView+AutoLayout */ = {
+			isa = PBXGroup;
+			children = (
+				1E3AC5A91D0AB9A80067BD23 /* UIView+AutoLayout.h */,
+				1E3AC5AA1D0AB9A80067BD23 /* UIView+AutoLayout.m */,
+			);
+			path = "UIView+AutoLayout";
+			sourceTree = "<group>";
+		};
 		1EFF371A1D004D2F00D89C6E /* 01-ReachAbility */ = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +78,7 @@
 		4B171F641D00347B0055C585 /* Networking-C13 */ = {
 			isa = PBXGroup;
 			children = (
+				1E3AC5A81D0AB9A80067BD23 /* UIView+AutoLayout */,
 				4B171F7C1D003C8E0055C585 /* main.m */,
 				1EB2586B1D09AEA000E456C7 /* TestBedViewController.h */,
 				1EE6AB281D03178300672510 /* TestBedViewController.m */,
@@ -148,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EFF37191D004D2900D89C6E /* UIDevice+ReachAbility.m in Sources */,
+				1E3AC5AB1D0AB9A80067BD23 /* UIView+AutoLayout.m in Sources */,
 				4B171F7D1D003C8E0055C585 /* main.m in Sources */,
 				1EE6AB291D03178300672510 /* TestBedViewController.m in Sources */,
 			);
